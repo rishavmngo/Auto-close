@@ -19,5 +19,5 @@ a auto pairing like rjsx mode for web mode.
 
 Improvements:
 
-1. Some way to indetify when to expand like not to expand in if else or for loops
+1. Some way to indetify when to expand. Like not to expand in `if` else or `for` loops
 

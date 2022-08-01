@@ -27,5 +27,6 @@ Featuers:
 
 1. Easy expansion doesn't break your flow.
 2. Smart enough so it will not expand in unexptected area like less than or greater than expression.
+3. Multiline expansion
 
 

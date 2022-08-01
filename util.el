@@ -77,13 +77,13 @@
        (if found
 	   (
 	    progn
-	    (setq node (split-string (substring lineStr (+ pos 1) columnNumber)))
-	    (insert "<")
-	    ;; (setq currenPos (point))
-	    (setq currenPos (+ (getPositionToInsert columnNumber lineStr) cursorPos ))
-	    (goto-char currenPos)
-	    (insert (car node))
-	    (goto-char cursorPos)
+	     (setq node (split-string (substring lineStr (+ pos 1) columnNumber)))
+	     (setq posT (re-search-forward "[/]"))
+	     (goto-char (- posT 1))
+	     (insert "<")
+	     (goto-char (+ 1 posT))
+	     (insert (car node))
+	     (goto-char cursorPos)
 	    )
 	 )
        )

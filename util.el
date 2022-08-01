@@ -8,6 +8,7 @@
       (
        progn
        (setq bufLis (car (last (butlast (split-string (car (last (split-string bufStr))) "")))))
+       
        (if(string-match "^[a-zA-Z0-9)]*$" bufLis)
 	   (setq bool nil)
 	 (setq bool t)
@@ -18,6 +19,24 @@
   bool
   )
 
+
+(defun getPositionToInsert (start mainStr)
+  (setq mainSubStr (substring mainStr (+ 1 start)))
+  (setq open t)
+  (dotimes (index (- (length mainSubStr) 1))
+    (if (= 62 (aref mainSubStr index))
+	(
+	 if open
+	 (
+	  progn
+	  (setq open nil)
+	  (setq pti index)
+	  (print index)
+	  ))))
+  pti   
+  )
+
+
 (defun getLine ()
   (interactive)
   (if(and  (checkScope (+ 1 (current-column))) (derived-mode-p mode))
@@ -27,9 +46,7 @@
        (insert "</>")
        (goto-char (+ curPos 1))
        )
-    (insert "<")
-    )
-  )
+    (insert "<")))
 
 
 (defun getLine2 ()
@@ -62,8 +79,9 @@
 	    progn
 	    (setq node (split-string (substring lineStr (+ pos 1) columnNumber)))
 	    (insert "<")
-	    (setq currenPos (point))
-	    (goto-char (+ currenPos 1))
+	    ;; (setq currenPos (point))
+	    (setq currenPos (+ (getPositionToInsert columnNumber lineStr) cursorPos ))
+	    (goto-char currenPos)
 	    (insert (car node))
 	    (goto-char cursorPos)
 	    )
